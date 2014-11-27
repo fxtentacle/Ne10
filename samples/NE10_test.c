@@ -79,7 +79,9 @@ void test_add2 (void)
     thecst = (ne10_float32_t) rand() / RAND_MAX * 5.0f;
 
     ne10_addc_float_c (thedst1 , thesrc, thecst, 5);
+#if !defined(INTEL_MAC_PLATFORM)		
     ne10_addc_float_neon (thedst2 , thesrc, thecst, 5);
+#endif
 }
 
 /**

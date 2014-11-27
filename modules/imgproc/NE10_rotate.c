@@ -259,6 +259,7 @@ void ne10_img_rotate_rgba_c (ne10_uint8_t* dst,
     ne10_img_rotate_get_quad_rangle_subpix_rgba_c (dst, src, srcw, srch, dstw, dsth, m);
 }
 
+#if !defined(INTEL_MAC_PLATFORM)
 
 extern void ne10_img_rotate_get_quad_rangle_subpix_rgba_neon (ne10_uint8_t *dst,
         ne10_uint8_t *src,
@@ -311,6 +312,9 @@ void ne10_img_rotate_rgba_neon (ne10_uint8_t* dst,
     *dst_height = dsth;
     ne10_img_rotate_get_quad_rangle_subpix_rgba_neon (dst, src, srcw, srch, dstw, dsth, m);
 }
+
+#endif // !defined(INTEL_MAC_PLATFORM)
+
 
 /**
  * @} end of IMG_ROTATE group

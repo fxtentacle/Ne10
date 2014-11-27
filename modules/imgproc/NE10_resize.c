@@ -402,6 +402,8 @@ void ne10_img_resize_bilinear_rgba_c (ne10_uint8_t* dst,
     NE10_FREE (buffer_);
 }
 
+#if !defined(INTEL_MAC_PLATFORM)
+
 extern void ne10_img_hresize_4channels_linear_neon (const ne10_uint8_t** src,
         ne10_int32_t** dst,
         ne10_int32_t count,
@@ -543,6 +545,9 @@ void ne10_img_resize_bilinear_rgba_neon (ne10_uint8_t* dst,
     ne10_img_resize_generic_linear_neon (src, dst, xofs, ialpha, yofs, ibeta, xmin, xmax, ksize, srcw, srch, src_stride, dstw, dsth, cn);
     NE10_FREE (buffer_);
 }
+
+#endif // !defined(INTEL_MAC_PLATFORM)
+
 
 /**
  * @} end of IMG_RESIZE group

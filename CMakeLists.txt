@@ -90,8 +90,8 @@ elseif(GNULINUX_PLATFORM)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfpu=vfp3")
     set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfpu=neon")
 elseif(INTEL_MAC_PLATFORM)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS}")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DINTEL_MAC_PLATFORM -arch x86_64")
+    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -DINTEL_MAC_PLATFORM -arch x86_64")
 elseif(IOS_PLATFORM)
     #set minimal target ios version.If not provided this option, Xcode
     #5.0.2 would generate code for iOS 7.0, which would lead runtime

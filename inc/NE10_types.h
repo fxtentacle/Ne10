@@ -235,7 +235,7 @@ typedef struct
     ne10_int32_t *factors;
     ne10_fft_cpx_float32_t *twiddles;
     ne10_fft_cpx_float32_t *super_twiddles;
-#elif defined( __aarch64__)
+#elif defined( __aarch64__) || defined(INTEL_MAC_PLATFORM)
     ne10_int32_t nfft;
     ne10_fft_cpx_float32_t *r_twiddles;
     ne10_int32_t *r_factors;

@@ -49,7 +49,7 @@ if (NE10_BUILD_UNIT_TEST)
 endif()
 
 #check if proper platform is set.
-if((NOT ANDROID_PLATFORM) AND (NOT GNULINUX_PLATFORM) AND (NOT IOS_PLATFORM))
+if((NOT ANDROID_PLATFORM) AND (NOT GNULINUX_PLATFORM) AND (NOT IOS_PLATFORM) AND (NOT INTEL_MAC_PLATFORM))
     message(FATAL_ERROR "No platform is defined! see CMakeBuilding.txt under doc for details.")
 endif()
 
@@ -89,6 +89,9 @@ if(ANDROID_PLATFORM)
 elseif(GNULINUX_PLATFORM)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfpu=vfp3")
     set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfpu=neon")
+elseif(INTEL_MAC_PLATFORM)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS}")
 elseif(IOS_PLATFORM)
     #set minimal target ios version.If not provided this option, Xcode
     #5.0.2 would generate code for iOS 7.0, which would lead runtime

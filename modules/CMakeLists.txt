@@ -323,6 +323,11 @@ include_directories (
     ${PROJECT_SOURCE_DIR}/common
 )
 
+if(INTEL_MAC_PLATFORM)
+  set(NE10_INTRINSIC_SRCS )
+  set(NE10_NEON_SRCS )
+endif()
+
 if(NE10_BUILD_STATIC OR ANDROID_PLATFORM OR IOS_DEMO)
     add_library( NE10 STATIC
         ${NE10_C_SRCS}

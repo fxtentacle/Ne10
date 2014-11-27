@@ -34,9 +34,9 @@ ne10_result_t ne10_init_dsp (ne10_int32_t is_NEON_available)
 #if !defined(INTEL_MAC_PLATFORM)
     if (NE10_OK == is_NEON_available)
     {
-        //ne10_fft_c2c_1d_float32 = ne10_fft_c2c_1d_float32_neon;
-        //ne10_fft_r2c_1d_float32 = ne10_fft_r2c_1d_float32_neon;
-        //ne10_fft_c2r_1d_float32 = ne10_fft_c2r_1d_float32_neon;
+        ne10_fft_c2c_1d_float32 = ne10_fft_c2c_1d_float32_neon;
+        ne10_fft_r2c_1d_float32 = ne10_fft_r2c_1d_float32_neon;
+        ne10_fft_c2r_1d_float32 = ne10_fft_c2r_1d_float32_neon;
 
         //ne10_fft_c2c_1d_int32 = ne10_fft_c2c_1d_int32_neon;
         //ne10_fft_r2c_1d_int32 = ne10_fft_r2c_1d_int32_neon;
@@ -57,9 +57,9 @@ ne10_result_t ne10_init_dsp (ne10_int32_t is_NEON_available)
     else
 #endif
     {
-        //ne10_fft_c2c_1d_float32 = ne10_fft_c2c_1d_float32_c;
-        //ne10_fft_r2c_1d_float32 = ne10_fft_r2c_1d_float32_c;
-        //ne10_fft_c2r_1d_float32 = ne10_fft_c2r_1d_float32_c;
+        ne10_fft_c2c_1d_float32 = ne10_fft_c2c_1d_float32_c;
+        ne10_fft_r2c_1d_float32 = ne10_fft_r2c_1d_float32_c;
+        ne10_fft_c2r_1d_float32 = ne10_fft_c2r_1d_float32_c;
 
         //ne10_fft_c2c_1d_int32 = ne10_fft_c2c_1d_int32_c;
         //ne10_fft_r2c_1d_int32 = ne10_fft_r2c_1d_int32_c;

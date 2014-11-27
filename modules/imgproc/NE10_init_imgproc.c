@@ -31,6 +31,7 @@
 
 ne10_result_t ne10_init_imgproc (ne10_int32_t is_NEON_available)
 {
+#if !defined(INTEL_MAC_PLATFORM)
     if (NE10_OK == is_NEON_available)
     {
         ne10_img_resize_bilinear_rgba = ne10_img_resize_bilinear_rgba_neon;
@@ -38,6 +39,7 @@ ne10_result_t ne10_init_imgproc (ne10_int32_t is_NEON_available)
         ne10_img_boxfilter_rgba8888 = ne10_img_boxfilter_rgba8888_neon;
     }
     else
+#endif
     {
         ne10_img_resize_bilinear_rgba = ne10_img_resize_bilinear_rgba_c;
         ne10_img_rotate_rgba = ne10_img_rotate_rgba_c;

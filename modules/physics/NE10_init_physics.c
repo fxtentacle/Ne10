@@ -35,6 +35,7 @@
 
 ne10_result_t ne10_init_physics (ne10_int32_t is_NEON_available)
 {
+#if !defined(INTEL_MAC_PLATFORM)
     if (NE10_OK == is_NEON_available)
     {
         ne10_physics_compute_aabb_vec2f = ne10_physics_compute_aabb_vec2f_neon;
@@ -42,6 +43,7 @@ ne10_result_t ne10_init_physics (ne10_int32_t is_NEON_available)
         ne10_physics_apply_impulse_vec2f = ne10_physics_apply_impulse_vec2f_neon;
     }
     else
+#endif
     {
         ne10_physics_compute_aabb_vec2f = ne10_physics_compute_aabb_vec2f_c;
         ne10_physics_relative_v_vec2f = ne10_physics_relative_v_vec2f_c;

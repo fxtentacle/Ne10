@@ -49,7 +49,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "NE10_fft.h"
 #include "NE10_dsp.h"
 
-#if defined(__aarch64__)
+#if defined(__aarch64__) || defined(INTEL_MAC_PLATFORM)
 
 extern void ne10_radix8_r2c_c (ne10_fft_cpx_float32_t *Fout,
                                   const ne10_fft_cpx_float32_t *Fin,

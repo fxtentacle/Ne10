@@ -79,7 +79,11 @@ ne10_result_t ne10_init()
         is_NEON_available = NE10_OK;
     }
 #else  //__MACH__
+#ifdef INTEL_MAC_PLATFORM
+    is_NEON_available = NE10_ERR;
+#else //INTEL_MAC_PLATFORM
     is_NEON_available = NE10_OK;
+#endif //INTEL_MAC_PLATFORM
 #endif //__MACH__
 
 #if defined (NE10_ENABLE_MATH)

@@ -55,7 +55,9 @@ ne10_result_t ne10_init()
 
     if (!infofile)
     {
+#ifdef NE10_PRINTF_ERRORS
         fprintf(stderr, "ERROR: couldn't read file \"/proc/cpuinfo\".\n");
+#endif
         return NE10_ERR;
     }
 
@@ -64,7 +66,9 @@ ne10_result_t ne10_init()
 
     if (0 == bytes || CPUINFO_BUFFER_SIZE == bytes)
     {
+#ifdef NE10_PRINTF_ERRORS
         fprintf (stderr, "ERROR: Couldn't read the file \"/proc/cpuinfo\". NE10_init() failed.\n");
+#endif
         return NE10_ERR;
     }
 
@@ -90,7 +94,9 @@ ne10_result_t ne10_init()
     status = ne10_init_math (is_NEON_available);
     if (status != NE10_OK)
     {
+#ifdef NE10_PRINTF_ERRORS
         fprintf(stderr, "ERROR: init math failed\n");
+#endif
         return NE10_ERR;
     }
 #endif
@@ -99,7 +105,9 @@ ne10_result_t ne10_init()
     status = ne10_init_dsp (is_NEON_available);
     if (status != NE10_OK)
     {
+#ifdef NE10_PRINTF_ERRORS
         fprintf(stderr, "ERROR: init dsp failed\n");
+#endif
         return NE10_ERR;
     }
 #endif
@@ -108,7 +116,9 @@ ne10_result_t ne10_init()
     status = ne10_init_imgproc (is_NEON_available);
     if (status != NE10_OK)
     {
+#ifdef NE10_PRINTF_ERRORS
         fprintf(stderr, "ERROR: init imgproc failed\n");
+#endif
         return NE10_ERR;
     }
 #endif
@@ -117,7 +127,9 @@ ne10_result_t ne10_init()
     status = ne10_init_physics (is_NEON_available);
     if (status != NE10_OK)
     {
+#ifdef NE10_PRINTF_ERRORS
         fprintf(stderr, "ERROR: init imgproc failed\n");
+#endif
         return NE10_ERR;
     }
 #endif

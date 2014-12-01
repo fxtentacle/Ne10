@@ -34,6 +34,7 @@ option(NE10_BUILD_EXAMPLES "Build NE10 examples" ON)
 
 #hard float abi
 option(NE10_ARM_HARD_FLOAT "Build NE10 for hard float abi" OFF)
+option(NE10_ARM64 "Build NE10 for ARM64" OFF)
 
 #unit test options
 option(NE10_BUILD_UNIT_TEST "Build NE10 unit test" OFF)
@@ -70,6 +71,14 @@ else(BUILD_DEBUG)
 endif(BUILD_DEBUG)
 
 if(ANDROID_PLATFORM)
+  if(NE10_ARM64)
+    if(BUILD_DEBUG)
+    else(BUILD_DEBUG)
+      set(CMAKE_C_FLAGS " -Ofast -ftree-vectorize -flto -funsafe-math-optimizations")
+    endif(BUILD_DEBUG)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfix-cortex-a53-835769 --sysroot=${NDK_SYSROOT_PATH}")
+    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mfix-cortex-a53-835769 --sysroot=${NDK_SYSROOT_PATH}")
+  else(NE10_ARM64)
     if(NE10_ARM_HARD_FLOAT)
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfloat-abi=hard -Wl,--no-warn-mismatch -mfpu=vfp3 --sysroot=${NDK_SYSROOT_PATH}")
         set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfloat-abi=hard -Wl,--no-warn-mismatch -mfpu=neon --sysroot=${NDK_SYSROOT_PATH}")
@@ -77,6 +86,7 @@ if(ANDROID_PLATFORM)
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfloat-abi=softfp -mfpu=vfp3 --sysroot=${NDK_SYSROOT_PATH}")
         set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfloat-abi=softfp -mfpu=neon --sysroot=${NDK_SYSROOT_PATH}")
     endif(NE10_ARM_HARD_FLOAT)
+  endif(NE10_ARM64)
     message("loaded toolchain:
     ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-gcc
     ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-g++

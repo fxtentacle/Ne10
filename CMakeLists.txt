@@ -78,11 +78,11 @@ if(ANDROID_PLATFORM)
         set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mthumb-interwork -mthumb -march=armv7-a -mfloat-abi=softfp -mfpu=neon --sysroot=${NDK_SYSROOT_PATH}")
     endif(NE10_ARM_HARD_FLOAT)
     message("loaded toolchain:
-    ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-gcc
-    ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-g++
-    ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-as
-    ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-ar
-    ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-ranlib")
+    ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-gcc
+    ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-g++
+    ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-as
+    ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-ar
+    ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-ranlib")
     if(ANDROID_PLATFORM AND ANDROID_DEMO)
       add_subdirectory(android/NE10Demo/jni)
     endif()

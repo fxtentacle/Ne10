@@ -52,6 +52,12 @@ if(ANDROID_DEMO)
 endif()
 
 if(DEFINED ENV{ANDROID_NDK})
+  if(NOT DEFINED ENV{ANDROID_ABI})
+      set(ANDROID_ABI arm-linux-androideabi)
+  else()
+      set(ANDROID_ABI $ENV{ANDROID_ABI})
+  endif()
+
     if(NOT DEFINED ENV{ANDROID_API_LEVEL})
         set(ANDROID_API_LEVEL 14)
     else()
@@ -67,25 +73,25 @@ if(DEFINED ENV{ANDROID_NDK})
     set(NDK_SYSROOT_PATH "$ENV{ANDROID_NDK}/platforms/android-${ANDROID_API_LEVEL}/arch-arm/")
 
     if(APPLE)
-	set(ANDROID_TOOLCHAIN_PATH "$ENV{ANDROID_NDK}/toolchains/arm-linux-androideabi-${ARM_ANDROID_TOOLCHAIN_VERSION}/prebuilt/darwin-x86_64/bin")
+	set(ANDROID_TOOLCHAIN_PATH "$ENV{ANDROID_NDK}/toolchains/${ANDROID_ABI}-${ARM_ANDROID_TOOLCHAIN_VERSION}/prebuilt/darwin-x86_64/bin")
     else()
-        set(ANDROID_TOOLCHAIN_PATH "$ENV{ANDROID_NDK}/toolchains/arm-linux-androideabi-${ARM_ANDROID_TOOLCHAIN_VERSION}/prebuilt/linux-x86_64/bin")
+        set(ANDROID_TOOLCHAIN_PATH "$ENV{ANDROID_NDK}/toolchains/${ANDROID_ABI}-${ARM_ANDROID_TOOLCHAIN_VERSION}/prebuilt/linux-x86_64/bin")
     endif()
 
     #change toolchain name according to your configuration
-    set(CMAKE_C_COMPILER ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-gcc)
-    set(CMAKE_CXX_COMPILER ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-g++)
-    set(CMAKE_ASM_COMPILER ${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-as)
+    set(CMAKE_C_COMPILER ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-gcc)
+    set(CMAKE_CXX_COMPILER ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-g++)
+    set(CMAKE_ASM_COMPILER ${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-as)
 
     # Skip the platform compiler checks for cross compiling
     set(CMAKE_CXX_COMPILER_WORKS TRUE)
     set(CMAKE_C_COMPILER_WORKS TRUE)
     set(CMAKE_ASM_COMPILER_WORKS TRUE)
 
-    find_program(CMAKE_AR NAMES "${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-ar")
+    find_program(CMAKE_AR NAMES "${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-ar")
     mark_as_advanced(CMAKE_AR)
 
-    find_program(CMAKE_RANLIB NAMES "${ANDROID_TOOLCHAIN_PATH}/arm-linux-androideabi-ranlib")
+    find_program(CMAKE_RANLIB NAMES "${ANDROID_TOOLCHAIN_PATH}/${ANDROID_ABI}-ranlib")
     mark_as_advanced(CMAKE_RANLIB)
 
 else()
